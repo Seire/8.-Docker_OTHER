@@ -1,0 +1,6 @@
+ FROM nginx:latest
+ COPY ./part3/server.c /home/
+ COPY ./part3/nginx.conf /etc/nginx/
+ COPY ./part3/Entrypoint.sh /home/
+ RUN apt-get -y update && apt-get -y upgrade && apt-get install -y libfcgi-dev && apt-get install -y spawn-fcgi && apt-get install -y gcc && chmod +x /home/Entrypoint.sh
+ ENTRYPOINT ["/home/Entrypoint.sh"]

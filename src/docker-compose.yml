@@ -1,0 +1,17 @@
+version: "v2.29.2"
+
+services:
+  server:
+    image: mynginx2:mytag
+    build: .
+    container_name: cont1
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:8080
+    volumes:
+      - ./part6/nginx:/etc/nginx
+    depends_on:
+      - server
+    container_name: cont2
